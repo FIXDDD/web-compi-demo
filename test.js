@@ -8,6 +8,9 @@ $(document).ready(function () {
     console.log(job1);
     var newblog = document.createElement('div');
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>";
+    for(var k = 0; k < job1.image.length; k++){
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\"><p></p>"
+    }
     blog.appendChild(newblog);
   }
 })
@@ -52,6 +55,7 @@ screenshotButton.onclick = video.onclick = function () {
 
 
 function handleSuccess(stream) {
+  video.style.display = "block";
   screenshotButton.disabled = false;
   video.srcObject = stream;
 }
@@ -73,7 +77,7 @@ function geoFindMe() {
     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
 
     var img = new Image();
-    //img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false&key=AIzaSyADrKlMX6jdT_T7sLhb77h2r_QxMCcoyMc";
+    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false&key=AIzaSyADrKlMX6jdT_T7sLhb77h2r_QxMCcoyMc";
 
     output.appendChild(img);
   }
@@ -98,14 +102,12 @@ submitbtn.onclick = function () {
   var blogcount = (localStorage.length === undefined)? 0: localStorage.length;
   var allimage = document.querySelectorAll("#picture img");
   var imageinfo = []
-  for (var j = 0; j < allimage.length; i++) {
+  for (var j = 0; j < allimage.length; j++) {
     imageinfo.push(allimage[j].src);
 }
-
   console.log(imageinfo);
 
-
-  if(nameinfo == "" || descriptioninfo == "" || localStorage == ""){
+  if(nameinfo == "" || descriptioninfo == "" || localStorage == "" || imageinfo == []){
     return alert("variable empty");
   }
 
@@ -116,7 +118,7 @@ submitbtn.onclick = function () {
 
   //create the blog object to local storage
   var obj = {};
-  obj[blogcountstr] = { name: nameinfo, description: descriptioninfo, location: locationinfo };
+  obj[blogcountstr] = { name: nameinfo, description: descriptioninfo, location: locationinfo, image: imageinfo};
   console.log(obj);
   localStorage.setItem(blogcountstr, JSON.stringify(obj));
 
@@ -134,6 +136,10 @@ submitbtn.onclick = function () {
     console.log(job1);
     var newblog = document.createElement('div');
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>";
+    console.log(job1.image);
+    for(var k = 0; k < job1.image.length; k++){
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\"><p></p>"
+    }
     blog.appendChild(newblog);
   }
 
@@ -141,8 +147,8 @@ submitbtn.onclick = function () {
   var blogcount = localStorage.length;
 
   // init form
-  nameinfo = ""
-  descriptioninfo = ""
+  document.getElementById('bname').value = "";
+  document.getElementById('bdescription').value + "";
   while(document.getElementById('out').firstChild){
     document.getElementById('out').removeChild(document.getElementById('out').firstChild)
   }
@@ -150,4 +156,9 @@ submitbtn.onclick = function () {
     document.getElementById('picture').removeChild(document.getElementById('picture').firstChild)
   }
 
+  video.style.display = "none";
+  screenshotButton.disabled = true;
+  video.srcObject = "";
+
 }
+
