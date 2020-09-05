@@ -148,7 +148,7 @@ submitbtn.onclick = function () {
 
   // init form
   document.getElementById('bname').value = "";
-  document.getElementById('bdescription').value + "";
+  document.getElementById('bdescription').value = "";
   while(document.getElementById('out').firstChild){
     document.getElementById('out').removeChild(document.getElementById('out').firstChild)
   }
