@@ -17,7 +17,7 @@
 	<head>
 		<nav class="navbar navbar-light" style="background-color: #4abdac;">
 			<!-- Navbar content -->
-			<a class="navbar-brand mx-auto" onclick="reload_page()">Small Business</a>
+			<a class="navbar-brand mx-auto text-white" onclick="reload_page()">Small Business</a>
 			<form class="form-inline">
 				<button type="button" class="btn btn-danger" onclick="showform()">POST</button>
 			</form>
@@ -58,7 +58,13 @@
 					</div>
 					<lable for="bdescription">Business Description</lable>
 					<input id="bdescription" type="text" name="bdescription">
-					<a type="button" class="btn btn-danger text-white float-right">submit</a>
+					<div style="padding: 1em;">
+						<button type="button" id="mailbtn" class="btn btn-danger text-white float-right">Send mail</button>
+					</div>
+					<div style="padding: 1em; margin-top: 1em;">
+						<button type="button" id='submitbtn'
+							class="btn btn-danger text-white float-right">submit</button>
+					</div>
 				</form>
 			</div>
 		</section>
@@ -66,17 +72,23 @@
 		<div id="show_blog" class="container">
 		</div>
 		<!--Hide modle to show full image and share-->
-		<div class="modal in" id="viewImg" tabindex="-1" role="dialog" style="display: none;">
+		<div class="modal in" id="viewImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button id="close-imgshow" type="button" class="close" data-dismiss="modal"
-							aria-label="Close"><span aria-hidden="true">×</span></button>
-						<h4 class="modal-title">View Image</h4>
+						<h5 class="modal-title">View Image</h5>
+						<button id="close-imgshow" type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
 					</div>
 					<div class="modal-body">
 						<div id="imgViewer" style="overflow-x: scroll;">
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="savebtn">save</button>
 					</div>
 				</div>
 			</div>

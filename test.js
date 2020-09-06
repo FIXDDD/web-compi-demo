@@ -22,18 +22,23 @@ $(document).ready(function () {
     $(e).wrap('<div class="img-wrapper"></div>')
   })
 
+  /*
   var allimg = document.getElementsByTagName('img');
   for (var a = 0; a < allimg.length; a++) {
     allimg[a].addEventListener('click', function (el) {
       appendimg(el);
     })
   }
+  */
+  $('img').on('click', function (e) {
+    $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
+    $('#viewImg').modal('show');
+  })
+
 })
 
 // map variable
 var map;
-
-
 
 //Init map function for map https://stackoverflow.com/questions/32496382/typeerror-window-initmap-is-not-a-function
 function initMap() {
@@ -70,28 +75,42 @@ const idvideo = document.getElementById('vidi');
 const canvas = document.createElement('canvas');
 
 // form variable
-const submitbtn = document.querySelector('#form a');
+const submitbtn = document.querySelector('#form #submitbtn');
+const mailbtn = document.querySelector('#form #mailbtn');
 const blog = document.getElementById('show_blog');
+
+// modal variable
+const sharebtn = document.getElementById('savebtn');
 
 //functions
 
+// for nav brand
+function reload_page() {
+  location.reload();
+}
+
+// for take picture
 captureVideoButton.onclick = function () {
   navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
 };
 
-screenshotButton.onclick = video.onclick = function () {
+screenshotButton.onclick = function () {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
   //img.src = canvas.toDataURL('image/webp');
   var eleme = document.createElement('img');
-  eleme.src = canvas.toDataURL('image/webp');
-  eleme.className = "img-responsive"
-  document.getElementById("picture").appendChild(eleme)
+  eleme.src = canvas.toDataURL('image/png');
+  eleme.className = "img-fluid";
+  document.getElementById("picture").appendChild(eleme);
+  $('#picture img').on('click', function (e) {
+    $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
+    $('#viewImg').modal('show');
+  })
   //try append image
-};
+}
 
 
 function handleSuccess(stream) {
@@ -224,7 +243,7 @@ submitbtn.onclick = function () {
   var useraddressinfo = (document.getElementById('address') == null) ? "" : document.getElementById("address").innerText;
   var blogcount = (localStorage.length === undefined) ? 0 : localStorage.length;
   var allimage = document.querySelectorAll("#picture img");
-  var imageinfo = []
+  var imageinfo = [];
   for (var j = 0; j < allimage.length; j++) {
     imageinfo.push(allimage[j].src);
   }
@@ -295,8 +314,53 @@ function showform() {
   document.getElementById("form").style.display = "block";
 }
 
+//for share image
+
+sharebtn.onclick = () => {
+  /*
+  var imgsrce = document.getElementById('imgViewer').getElementsByTagName('img')[0].src;
+  if (navigator.share && navigator.canShare({ files: [imgsrce] })) {
+    navigator.share({
+      files: [imgsrce],
+      title: 'Amazing business',
+      text: 'Check out this amazing business',
+    })
+      .then(() => console.log('Share was successful.'))
+      .catch((error) => console.log('Sharing failed', error));
+  } else {
+    console.log(`Your system doesn't support sharing files.`);
+  }
+  */
+  var imgsrce = document.getElementById('imgViewer').getElementsByTagName('img')[0].src;
+  var link = document.createElement('a');
+  link.href = imgsrce;
+  link.download = 'Download.jpg';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+mailbtn.onclick = function(){
+  var nameinfo1 = document.getElementById('bname').value;
+  var descriptioninfo1 = document.getElementById('bdescription').value;
+  var useraddressinfo1 = (document.getElementById('address') == null) ? "" : document.getElementById("address").innerText;
+  var imageinfo1 = [];
+  var allimage1 = document.querySelectorAll("#picture img");
+  for (var j = 0; j < allimage1.length; j++) {
+    imageinfo1.push(allimage1[j].src);
+  }
+
+  if (nameinfo1 == "" || descriptioninfo1 == "" || useraddressinfo1 == "" || imageinfo1 == []) {
+    return alert("variable empty");
+  }
+
+  document.location.href = 'mailto:' + "Youremail@email.com" + '?subject=' + "Amazing business: "+ nameinfo1 + '&body=' + descriptioninfo1;
+
+}
 
 
+
+/*
 function appendimg(el) {
   var ele = el.target;
   document.getElementById('imgViewer').innerHTML = "";
@@ -309,9 +373,9 @@ function appendimg(el) {
 document.getElementById("close-imgshow").onclick = () => {
   document.getElementById('viewImg').style.display = "none";
 }
+*/
 
-function reload_page(){
-  location.reload();
-}
-
-
+// modal init
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
