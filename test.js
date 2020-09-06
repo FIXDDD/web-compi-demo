@@ -13,7 +13,7 @@ $(document).ready(function () {
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
     console.log(job1.image);
     for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-responsive\"><p></p>"
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-fluid\"><p></p>"
     }
     blog.appendChild(newblog);
   }
@@ -66,6 +66,7 @@ const screenshotButton = document.querySelector('#screenshot-button');
 //const img = document.querySelector('#screenshot img');
 //var img = document.querySelector('#screenshot img');
 const video = document.querySelector('#screenshot video');
+const idvideo = document.getElementById('vidi');
 const canvas = document.createElement('canvas');
 
 // form variable
@@ -94,6 +95,7 @@ screenshotButton.onclick = video.onclick = function () {
 
 
 function handleSuccess(stream) {
+  idvideo.style.display = "block";
   video.style.display = "block";
   screenshotButton.disabled = false;
   video.srcObject = stream;
@@ -259,7 +261,7 @@ submitbtn.onclick = function () {
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
     console.log(job1.image);
     for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-responsive\"><p></p>"
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-fluid\"><p></p>"
     }
     blog.appendChild(newblog);
   }

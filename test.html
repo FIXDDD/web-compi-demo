@@ -44,7 +44,9 @@
 					</div>
 					<!--get picture-->
 					<div id="screenshot">
-						<video autoplay style="display: none;"></video>
+						<div class="embed-responsive embed-responsive-16by9" id="vidi">
+							<video autoplay></video>
+						</div>
 						<div id="picture"></div>
 						<canvas style="display:none;"></canvas>
 						<p>
@@ -68,8 +70,8 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button id="close-imgshow" type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-								aria-hidden="true">×</span></button>
+						<button id="close-imgshow" type="button" class="close" data-dismiss="modal"
+							aria-label="Close"><span aria-hidden="true">×</span></button>
 						<h4 class="modal-title">View Image</h4>
 					</div>
 					<div class="modal-body">

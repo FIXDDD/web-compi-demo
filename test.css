@@ -39,6 +39,15 @@ body {
     position:absolute;
 }
 
+/*for video*/
+#vidi{
+	display:none;
+}
+
+video{
+	display: none;
+}
+
 
 
 #show_blog {
