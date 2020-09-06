@@ -1,9 +1,24 @@
-#form {
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#form form {
 	border: 1px black solid;
 	border-radius: 10px;
 	margin-bottom: 2em;
 	padding: 2em;
+	background-color: #fff;
 }
+
+#lat, #lng{
+	display: none;
+}
+
+
 
 #show_blog {
 	border: 1px black solid;
@@ -12,4 +27,21 @@
 
 #show_blog div{
 	border: 1px black solid;
+}
+
+/*background color*/
+.fresh{
+	background-color:#4abdac;
+}
+
+.vermillion{
+	background-color: #fc4a1a;
+}
+
+.sunshine{
+	background-color: #f7B733;
+}
+
+.clean{
+	background-color: #dfdce3;
 }
