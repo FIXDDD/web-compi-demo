@@ -25,16 +25,16 @@
 	</head>
 	<main>
 		<section class="fresh" id="form" style="display: none;">
-			<div class="container">
-
+			<div>
 				<form>
 					<p>Create Post</p>
-					<label for="bname">Business Name:</label>
-					<input id="bname" type="text" name="bname"><br>
+					<div class="form-group">
+						<label for="bname">Business Name:</label>
+						<input id="bname" class="form-control" type="text" name="bname"><br>
+					</div>
 					<div>
 						<!-- https://codepen.io/makzan/pen/EbLopd -->
 						<!-- get location-->
-						<p>Business location:</p>
 						<p><button type="button" onclick="findAddress()">Get My address</button></p>
 						<div id="myaddr"></div>
 						<p><button type="button" onclick="geoFindMe()">Show my location</button></p>
@@ -56,20 +56,21 @@
 							<button type="button" id="screenshot-button" disabled> Take screenshot</button>
 						</p>
 					</div>
-					<lable for="bdescription">Business Description</lable>
-					<input id="bdescription" type="text" name="bdescription">
-					<div style="padding: 1em;">
-						<button type="button" id="mailbtn" class="btn btn-danger text-white float-right">Send mail</button>
+					<div class="form-group">
+						<lable for="bdescription">Business Description</lable>
+						<input id="bdescription" class="form-control" type="text" name="bdescription">
 					</div>
-					<div style="padding: 1em; margin-top: 1em;">
+					<div style="padding: 1em;">
+						<button type="button" id="mailbtn" class="btn btn-primary text-white float-left">Send
+							mail</button>
 						<button type="button" id='submitbtn'
-							class="btn btn-danger text-white float-right">submit</button>
+							class="btn btn-primary text-white float-right">submit</button>
 					</div>
 				</form>
 			</div>
 		</section>
 
-		<div id="show_blog" class="container">
+		<div id="show_blog">
 		</div>
 		<!--Hide modle to show full image and share-->
 		<div class="modal in" id="viewImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

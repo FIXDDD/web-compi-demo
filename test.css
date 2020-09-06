@@ -52,12 +52,6 @@ video{
 	display: none;
 }
 
-
-#show_blog {
-	border: 1px black solid;
-	border-radius: 10px;
-}
-
 #show_blog div{
 	border: 1px black solid;
 }
@@ -94,5 +88,10 @@ video{
     border-radius: 5px;
     background-color: rgba(0,0,0,.5);
     box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+#show_blog{
+	margin:2em;
+	padding: 2em;
 }
 

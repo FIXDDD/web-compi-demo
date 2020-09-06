@@ -18,9 +18,11 @@ $(document).ready(function () {
     blog.appendChild(newblog);
   }
 
+  /* old bootstrap
   $('img').each(function (i, e) {
     $(e).wrap('<div class="img-wrapper"></div>')
   })
+  */
 
   /*
   var allimg = document.getElementsByTagName('img');
@@ -60,7 +62,7 @@ function initMap() {
 
 // Get picture
 const constraints = {
-  video: true
+  video: { facingMode: "environment" }
 };
 
 // image variable
