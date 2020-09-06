@@ -17,7 +17,7 @@
 	<head>
 		<nav class="navbar navbar-light" style="background-color: #4abdac;">
 			<!-- Navbar content -->
-			<a class="navbar-brand mx-auto" href="#">Small Business</a>
+			<a class="navbar-brand mx-auto" onclick="reload_page()">Small Business</a>
 			<form class="form-inline">
 				<button type="button" class="btn btn-danger" onclick="showform()">POST</button>
 			</form>
@@ -39,7 +39,7 @@
 						<div id="myaddr"></div>
 						<p><button type="button" onclick="geoFindMe()">Show my location</button></p>
 						<div id="out">
-							<div id="map" style="height: 500px; width: 500px; display: none;"></div>
+							<div id="map"></div>
 						</div>
 					</div>
 					<!--get picture-->

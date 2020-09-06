@@ -33,6 +33,8 @@ $(document).ready(function () {
 // map variable
 var map;
 
+
+
 //Init map function for map https://stackoverflow.com/questions/32496382/typeerror-window-initmap-is-not-a-function
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -41,6 +43,12 @@ function initMap() {
       lng: 150.644
     },
     zoom: 8
+  });
+
+  google.maps.event.addDomListener(window, "resize", function () {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
   });
 }
 
@@ -155,6 +163,13 @@ function geoFindMe() {
       },
       zoom: 8
     });
+
+    google.maps.event.addDomListener(window, "resize", function () {
+      var center = map.getCenter();
+      google.maps.event.trigger(map, "resize");
+      map.setCenter(center);
+    });
+
     const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
 
@@ -289,8 +304,12 @@ function appendimg(el) {
   document.getElementById('viewImg').style.display = "block";
 }
 
-document.getElementById("close-imgshow").onclick = ()=>{
+document.getElementById("close-imgshow").onclick = () => {
   document.getElementById('viewImg').style.display = "none";
+}
+
+function reload_page(){
+  location.reload();
 }
 
 

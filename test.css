@@ -18,8 +18,25 @@ body {
 	background-color: #fff;
 }
 
+/*for map*/
 #lat, #lng{
 	display: none;
+}
+
+#map{
+	overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+	height:0;
+	display: none;
+}
+
+#map iframe{
+	left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }
 
 
@@ -66,3 +83,4 @@ body {
     background-color: rgba(0,0,0,.5);
     box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
+
