@@ -13,9 +13,20 @@ $(document).ready(function () {
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
     console.log(job1.image);
     for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\"><p></p>"
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-responsive\"><p></p>"
     }
     blog.appendChild(newblog);
+  }
+
+  $('img').each(function (i, e) {
+    $(e).wrap('<div class="img-wrapper"></div>')
+  })
+
+  var allimg = document.getElementsByTagName('img');
+  for (var a = 0; a < allimg.length; a++) {
+    allimg[a].addEventListener('click', function (el) {
+      appendimg(el);
+    })
   }
 })
 
@@ -68,7 +79,7 @@ screenshotButton.onclick = video.onclick = function () {
   //img.src = canvas.toDataURL('image/webp');
   var eleme = document.createElement('img');
   eleme.src = canvas.toDataURL('image/webp');
-  eleme.className = "rounded"
+  eleme.className = "img-responsive"
   document.getElementById("picture").appendChild(eleme)
   //try append image
 };
@@ -233,7 +244,7 @@ submitbtn.onclick = function () {
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
     console.log(job1.image);
     for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\"><p></p>"
+      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-responsive\"><p></p>"
     }
     blog.appendChild(newblog);
   }
@@ -259,10 +270,27 @@ submitbtn.onclick = function () {
   video.srcObject = "";
   document.getElementById("form").style.display = "none";
 */
-location.reload();
+  location.reload();
 }
 
 //show form
-function showform(){
+function showform() {
   document.getElementById("form").style.display = "block";
 }
+
+
+
+function appendimg(el) {
+  var ele = el.target;
+  document.getElementById('imgViewer').innerHTML = "";
+  var addingimg = document.createElement('img');
+  addingimg.setAttribute("src", ele.src);
+  document.getElementById('imgViewer').appendChild(addingimg);
+  document.getElementById('viewImg').style.display = "block";
+}
+
+document.getElementById("close-imgshow").onclick = ()=>{
+  document.getElementById('viewImg').style.display = "none";
+}
+
+
