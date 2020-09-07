@@ -68,7 +68,7 @@ const constraints = {
 // image variable
 var imgcount = 0;
 const captureVideoButton =
-  document.querySelector('#screenshot .capture-button');
+  document.querySelector('#screenshot #capture-button');
 const screenshotButton = document.querySelector('#screenshot-button');
 //const img = document.querySelector('#screenshot img');
 //var img = document.querySelector('#screenshot img');
