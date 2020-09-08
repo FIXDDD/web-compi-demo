@@ -3,19 +3,74 @@ window.onbeforeunload = function () {
 }
 $(document).ready(function () {
   //localStorage.clear();
+
+  //add default blog
+  var defaultblog = [{
+    name: "Joy's coffee shop",
+    description: "An amazing coffee shop with a comfortable atmosphere and good quality coffee. Great place spend chill out",
+    location: "Street AAA, No.31, Macau",
+    image: ['./default/img/ex1.jpg']
+  }, {
+    name: "Spot Thai restaurants",
+    description: "Want to find the best Thai restaurant in Macau. Spot Thai restaurant is the place you are looking for.",
+    location: "Street BBB, No.31, Macau",
+    image: ['./default/img/ex2.png']
+  },
+  {
+    name: "ClOTHES",
+    description: "CLOTHES, a place where you can purchase modern fashion clothes",
+    location: "Street CCC, No.31, Macau",
+    image: ['./default/img/ex3.jpg']
+  }
+  ];
+
+  if (localStorage.length == 0) {
+    for (var u = 0; u < defaultblog.length; u++) {
+    var blogobj = {};
+    blogobj[u] = { name: defaultblog[u].name, description: defaultblog[u].description, lat: -34.397, lng: 150.644, useraddress: defaultblog[u].location, image: [defaultblog[u].image[0]] };
+    localStorage.setItem(u, JSON.stringify(blogobj));
+    }
+  }
+  /*
+  for (var u = 0; u < defaultblog.length; u++) {
+    var templateblog = document.getElementById('card').innerHTML;
+    var creatblog = document.createElement('div');
+    creatblog.setAttribute('class', 'col mb-4');
+    creatblog.innerHTML = templateblog;
+    blog.appendChild(creatblog);
+    blog.lastChild.getElementsByTagName('img')[0].src = defaultblog[u].image[0];
+    blog.lastChild.getElementsByClassName('card-title')[0].innerText = defaultblog[u].name;
+    blog.lastChild.getElementsByClassName('card-text')[0].innerText = defaultblog[u].description;
+    blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = defaultblog[u].location;
+
+
+  }
+  */
   for (var i = 0; i < localStorage.length; i++) {
     var index = i.toString();
     var job = localStorage.getItem(index);
     console.log(job);
     var job1 = JSON.parse(job)[index];
     console.log(job1);
+    var inittemplateblog = document.getElementById('card').innerHTML;
     var newblog = document.createElement('div');
+    newblog.setAttribute('class', 'col mb-4');
+    newblog.innerHTML = inittemplateblog;
+    blog.appendChild(newblog);
+    blog.lastChild.getElementsByTagName('img')[0].src = job1.image[0];
+    blog.lastChild.getElementsByClassName('card-title')[0].innerText = job1.name;
+    blog.lastChild.getElementsByClassName('card-text')[0].innerText = job1.description;
+    blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = job1.useraddress;
+
+
+    /* Old way to append blog div
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
     console.log(job1.image);
     for (var k = 0; k < job1.image.length; k++) {
       newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-fluid\"><p></p>"
     }
     blog.appendChild(newblog);
+    */
   }
 
   /* old bootstrap
@@ -24,7 +79,7 @@ $(document).ready(function () {
   })
   */
 
-  /*
+  /* Old way to apply onlclick to all image
   var allimg = document.getElementsByTagName('img');
   for (var a = 0; a < allimg.length; a++) {
     allimg[a].addEventListener('click', function (el) {
@@ -266,6 +321,7 @@ submitbtn.onclick = function () {
   console.log(obj);
   localStorage.setItem(blogcountstr, JSON.stringify(obj));
 
+  /* Duplicate code to fill show_blog
   // clear shown blog
   while (blog.firstChild) {
     blog.removeChild(blog.firstChild);
@@ -286,6 +342,7 @@ submitbtn.onclick = function () {
     }
     blog.appendChild(newblog);
   }
+  */
 
   //reset number of blog in localstorage
   /*
@@ -342,7 +399,7 @@ sharebtn.onclick = () => {
   document.body.removeChild(link);
 }
 
-mailbtn.onclick = function(){
+mailbtn.onclick = function () {
   var nameinfo1 = document.getElementById('bname').value;
   var descriptioninfo1 = document.getElementById('bdescription').value;
   var useraddressinfo1 = (document.getElementById('address') == null) ? "" : document.getElementById("address").innerText;
@@ -356,7 +413,7 @@ mailbtn.onclick = function(){
     return alert("variable empty");
   }
 
-  document.location.href = 'mailto:' + "Youremail@email.com" + '?subject=' + "Amazing business: "+ nameinfo1 + '&body=' + descriptioninfo1;
+  document.location.href = 'mailto:' + "Youremail@email.com" + '?subject=' + "Amazing business: " + nameinfo1 + '&body=' + descriptioninfo1;
 
 }
 
