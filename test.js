@@ -55,12 +55,14 @@ $(document).ready(function () {
     var inittemplateblog = document.getElementById('card').innerHTML;
     var newblog = document.createElement('div');
     newblog.setAttribute('class', 'col mb-4');
+    newblog.setAttribute('id',i.toString());
     newblog.innerHTML = inittemplateblog;
     blog.appendChild(newblog);
     blog.lastChild.getElementsByTagName('img')[0].src = job1.image[0];
     blog.lastChild.getElementsByClassName('card-title')[0].innerText = job1.name;
     blog.lastChild.getElementsByClassName('card-text')[0].innerText = job1.description;
     blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = job1.useraddress;
+    blog.lastChild.getElementsByTagName('a')[0].id = i.toString();
 
 
     /* Old way to append blog div
@@ -87,11 +89,13 @@ $(document).ready(function () {
     })
   }
   */
+
+  /* Method to enlarge image
   $('img').on('click', function (e) {
     $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
     $('#viewImg').modal('show');
   })
-
+*/
 })
 
 // map variable
@@ -134,6 +138,7 @@ const canvas = document.createElement('canvas');
 // form variable
 const submitbtn = document.querySelector('#form #submitbtn');
 const mailbtn = document.querySelector('#form #mailbtn');
+const showpicture = document.getElementById("picture");
 const blog = document.getElementById('show_blog');
 
 // modal variable
@@ -158,6 +163,19 @@ screenshotButton.onclick = function () {
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
   //img.src = canvas.toDataURL('image/webp');
+  var formimgtemplate = document.getElementById("formimg").innerHTML;
+  var eleme = document.createElement('div');
+  eleme.className = "col";
+  eleme.innerHTML = formimgtemplate;
+  showpicture.appendChild(eleme);
+  showpicture.lastChild.getElementsByTagName('img')[0].src = canvas.toDataURL('image/png');
+  $('#picture img').on('click', function (e) {
+    $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('card-img-top'));
+    $('#viewImg').modal('show');
+  })
+
+  
+  /*
   var eleme = document.createElement('img');
   eleme.src = canvas.toDataURL('image/png');
   eleme.className = "img-fluid";
@@ -165,7 +183,7 @@ screenshotButton.onclick = function () {
   $('#picture img').on('click', function (e) {
     $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
     $('#viewImg').modal('show');
-  })
+  })*/
   //try append image
 }
 
