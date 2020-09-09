@@ -156,11 +156,11 @@ function reload_page() {
   location.reload();
 }
 
-// for take picture
-captureVideoButton.onclick = function () {
+captureVideoButton.onclick = function(){
   navigator.mediaDevices.getUserMedia(constraints).
-    then(handleSuccess).catch(handleError);
-};
+      then(handleSuccess).catch(handleError);
+}
+
 
 screenshotButton.onclick = function () {
   canvas.width = video.videoWidth;
@@ -196,7 +196,7 @@ screenshotButton.onclick = function () {
 function handleSuccess(stream) {
   idvideo.style.display = "block";
   video.style.display = "block";
-  screenshotButton.disabled = false;
+  screenshotButton.style.display = "inline";
   video.srcObject = stream;
 }
 
@@ -472,11 +472,11 @@ function showview(e) {
   }
 
   $('#viewpicture img').on('click', function (e) {
-    $('#viewpic').attr('src',e.target.src);
+    $('#viewpic').attr('src', e.target.src);
   })
 
   //show all image
-  viewplace.getElementsByTagName('a')[0].onclick = function (){
+  viewplace.getElementsByTagName('a')[0].onclick = function () {
     document.getElementById('viewpicture').style.display = "block";
   }
 }
