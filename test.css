@@ -19,7 +19,7 @@
 }
 
 /*for map*/
-#lat, #lng{
+#lat, #lng,#address{
 	display: none;
 }
 

@@ -219,7 +219,8 @@ function findAddress() {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         addressnow = JSON.parse(this.responseText).results[0].formatted_address;
-        addrout.innerHTML = '<p id=\"address\">' + addressnow + '</p>' + '<p id=\"lat\">' + latitude + '</p><p id=\"lng\">' + longitude + '</p>';
+        addrout.getElementsByTagName('input')[0].setAttribute('placeholder', addressnow);
+        addrout.innerHTML = addrout.innerHTML + '<p id=\"address\">' + addressnow + '</p>' + '<p id=\"lat\">' + latitude + '</p><p id=\"lng\">' + longitude + '</p>';
       }
     };
     xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=true&key=AIzaSyADrKlMX6jdT_T7sLhb77h2r_QxMCcoyMc", true);
@@ -265,12 +266,6 @@ function geoFindMe() {
       zoom: 8
     });
 
-    google.maps.event.addDomListener(window, "resize", function () {
-      var center = map.getCenter();
-      google.maps.event.trigger(map, "resize");
-      map.setCenter(center);
-    });
-
     const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
 
@@ -289,6 +284,8 @@ function geoFindMe() {
           });
           infowindow.setContent(results[0].formatted_address);
           infowindow.open(map, marker);
+          google.maps.event.trigger(map, "resize");
+          map.setCenter(latlng);
         } else {
           window.alert("No results found");
         }
