@@ -398,7 +398,6 @@ function showform() {
 }
 
 //for share image
-
 sharebtn.onclick = () => {
   /*
   var imgsrce = document.getElementById('imgViewer').getElementsByTagName('img')[0].src;
@@ -474,7 +473,18 @@ function showview(e) {
     viewpicture.appendChild(piceleme);
     viewpicture.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[q];
   }
+
+  $('#viewpicture img').on('click', function (e) {
+    $('#viewpic').attr('src',e.target.src);
+  })
+
+  //show all image
+  viewplace.getElementsByTagName('a')[0].onclick = function (){
+    document.getElementById('viewpicture').style.display = "block";
+  }
 }
+
+
 
 
 /*

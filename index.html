@@ -17,7 +17,7 @@
 	<head>
 		<nav class="navbar navbar-light black">
 			<!-- Navbar content -->
-			<a class="navbar-brand mx-auto text-white" onclick="reload_page()">Small Business</a>
+			<a href="#" class="navbar-brand mx-auto text-white" onclick="reload_page()">Small Business</a>
 			<form class="form-inline">
 				<button type="button" class="btn btn-danger" onclick="showform()">POST</button>
 			</form>
@@ -122,7 +122,7 @@
 				<p class="card-text"></p>
 			  </div>
 			  <div class="card-body text-right">
-				<a class="card-link">View detail</a>
+				<a href='#' class="card-link">View detail</a>
 			  </div>
 			</div>
 		</div>
@@ -139,17 +139,17 @@
 	<script id="viewblog" type="text/html">
 			<div class="row ">
 			  <div class="col-md-4">
-				  <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
+				  <img id="viewpic" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
 				</div>
 				<div class="col-md-8 px-3">
 				  <div class="card-block px-3">
 					<h1 class="card-title">Lorem ipsum dolor sit amet</h1>
 					<p class="card-subtitle text-muted"></p>
 					<p class="card-text"></p>
+					<a id="moreimage" href="#">More images...</a>
 					<div class='container'>
 						<div id="viewpicture"
 							class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-
 						</div>
 					</div>
 				  </div>

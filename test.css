@@ -10,6 +10,10 @@
 	background-color: #fff;
 }
 
+#picture img{
+	cursor: pointer;
+}
+
 #submitbtn{
 	margin-right: 0.5em;
 }
@@ -33,6 +37,15 @@
     height:100%;
     width:100%;
     position:absolute;
+}
+
+#viewpicture{
+	display: none;
+}
+
+/*for blog detail*/
+#viewpicture img{
+	cursor: pointer;
 }
 
 /*for video*/
