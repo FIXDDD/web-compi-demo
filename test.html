@@ -28,7 +28,7 @@
 			<div>
 				<h1 class="text-white text-center">Create Post</h1>
 				<form>
-					
+
 					<div class="form-group">
 						<label for="bname">Business Name:</label>
 						<input id="bname" class="form-control" type="text" name="bname"><br>
@@ -51,7 +51,8 @@
 							<video autoplay></video>
 						</div>
 						<div class='container'>
-							<div id="picture" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+							<div id="picture"
+								class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
 
 							</div>
 						</div>
@@ -78,9 +79,13 @@
 			</div>
 		</section>
 
-		<div class="container">
+		<section class="container py-3" id="detail"></section>
+
+		<section id="blog_place" class="container">
 			<div id="show_blog" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"></div>
-		</div>
+		</section>
+
+		
 
 
 		<!--Hide modle to show full image and share-->
@@ -109,17 +114,18 @@
 
 	<!--append card-->
 	<script id="card" type="text/html">
-			<div class="card">
+		<div class="card">
 			  <img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
 			  <div class="card-body">
 				<h5 class="card-title">Card title</h5>
 				<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-				<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="card-text"></p>
 			  </div>
 			  <div class="card-body text-right">
 				<a class="card-link">View detail</a>
 			  </div>
 			</div>
+		</div>
 	</script>
 
 	<!--append form picture-->
@@ -127,6 +133,30 @@
 		<div class="card">
 			<img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
 		</div>
+	</script>
+
+	<!--append view blog-->
+	<script id="viewblog" type="text/html">
+			<div class="row ">
+			  <div class="col-md-4">
+				  <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
+				</div>
+				<div class="col-md-8 px-3">
+				  <div class="card-block px-3">
+					<h1 class="card-title">Lorem ipsum dolor sit amet</h1>
+					<p class="card-subtitle text-muted"></p>
+					<p class="card-text"></p>
+					<div class='container'>
+						<div id="viewpicture"
+							class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+
+						</div>
+					</div>
+				  </div>
+				</div>
+	  
+			  </div>
+			</div>
 	</script>
 
 

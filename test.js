@@ -26,9 +26,9 @@ $(document).ready(function () {
 
   if (localStorage.length == 0) {
     for (var u = 0; u < defaultblog.length; u++) {
-    var blogobj = {};
-    blogobj[u] = { name: defaultblog[u].name, description: defaultblog[u].description, lat: -34.397, lng: 150.644, useraddress: defaultblog[u].location, image: [defaultblog[u].image[0]] };
-    localStorage.setItem(u, JSON.stringify(blogobj));
+      var blogobj = {};
+      blogobj[u] = { name: defaultblog[u].name, description: defaultblog[u].description, lat: -34.397, lng: 150.644, useraddress: defaultblog[u].location, image: [defaultblog[u].image[0]] };
+      localStorage.setItem(u, JSON.stringify(blogobj));
     }
   }
   /*
@@ -55,7 +55,6 @@ $(document).ready(function () {
     var inittemplateblog = document.getElementById('card').innerHTML;
     var newblog = document.createElement('div');
     newblog.setAttribute('class', 'col mb-4');
-    newblog.setAttribute('id',i.toString());
     newblog.innerHTML = inittemplateblog;
     blog.appendChild(newblog);
     blog.lastChild.getElementsByTagName('img')[0].src = job1.image[0];
@@ -63,7 +62,6 @@ $(document).ready(function () {
     blog.lastChild.getElementsByClassName('card-text')[0].innerText = job1.description;
     blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = job1.useraddress;
     blog.lastChild.getElementsByTagName('a')[0].id = i.toString();
-
 
     /* Old way to append blog div
     newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
@@ -73,6 +71,13 @@ $(document).ready(function () {
     }
     blog.appendChild(newblog);
     */
+  }
+
+  var allblog = document.getElementById('show_blog').getElementsByTagName('a');
+  for (var b = 0; b < allblog.length; b++) {
+    allblog[b].addEventListener('click', function (el) {
+      showview(el);
+    })
   }
 
   /* old bootstrap
@@ -174,7 +179,7 @@ screenshotButton.onclick = function () {
     $('#viewImg').modal('show');
   })
 
-  
+
   /*
   var eleme = document.createElement('img');
   eleme.src = canvas.toDataURL('image/png');
@@ -389,6 +394,7 @@ submitbtn.onclick = function () {
 //show form
 function showform() {
   document.getElementById("form").style.display = "block";
+  document.getElementById("detail").style.display = "none";
 }
 
 //for share image
@@ -417,6 +423,7 @@ sharebtn.onclick = () => {
   document.body.removeChild(link);
 }
 
+// send mail
 mailbtn.onclick = function () {
   var nameinfo1 = document.getElementById('bname').value;
   var descriptioninfo1 = document.getElementById('bdescription').value;
@@ -435,6 +442,39 @@ mailbtn.onclick = function () {
 
 }
 
+// show view
+function showview(e) {
+  window.scrollTo(0, 0);
+  var viewjob = localStorage.getItem(e.target.id);
+  var viewjob1 = JSON.parse(viewjob)[parseInt(e.target.id)];
+  var viewblogtemplate = document.getElementById('viewblog').innerHTML;
+  var viewplace = document.getElementById('detail');
+  var createview = document.createElement('div');
+
+  if (viewplace.firstChild) {
+    viewplace.firstChild.remove();
+  }
+
+  createview.setAttribute('class', 'card');
+  createview.innerHTML = viewblogtemplate;
+  viewplace.appendChild(createview);
+  document.getElementById('form').style.display = 'none';
+  viewplace.style.display = 'block';
+  viewplace.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[0];
+  viewplace.lastChild.getElementsByClassName('card-title')[0].innerText = viewjob1.name;
+  viewplace.lastChild.getElementsByClassName('card-text')[0].innerText = viewjob1.description;
+  viewplace.lastChild.getElementsByClassName('card-subtitle')[0].innerText = viewjob1.useraddress;
+
+  for (var q = 0; q < viewjob1.image.length; q++) {
+    var viewpicture = document.getElementById('viewpicture');
+    var viewpicturetemplate = document.getElementById("formimg").innerHTML;
+    var piceleme = document.createElement('div');
+    piceleme.className = "col";
+    piceleme.innerHTML = viewpicturetemplate;
+    viewpicture.appendChild(piceleme);
+    viewpicture.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[q];
+  }
+}
 
 
 /*
