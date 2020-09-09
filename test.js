@@ -198,6 +198,7 @@ function handleSuccess(stream) {
   video.style.display = "block";
   screenshotButton.style.display = "inline";
   video.srcObject = stream;
+  captureVideoButton.style.display = 'none';
 }
 
 //get address
