@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   }
   */
-  for (var i = localStorage.length-1; i >= 0; i--) {
+  for (var i = localStorage.length - 1; i >= 0; i--) {
     var index = i.toString();
     var job = localStorage.getItem(index);
     console.log(job);
@@ -153,7 +153,7 @@ const sharebtn = document.getElementById('savebtn');
 
 //functions**********************************************************
 
-function showpost(){
+function showpost() {
   document.getElementsByClassName('head')[0].style.display = 'none';
   document.getElementById('blog_place').style.display = 'block';
   document.getElementsByClassName('footer')[0].style.display = 'block';
@@ -164,9 +164,9 @@ function reload_page() {
   location.reload();
 }
 
-captureVideoButton.onclick = function(){
+captureVideoButton.onclick = function () {
   navigator.mediaDevices.getUserMedia(constraints).
-      then(handleSuccess).catch(handleError);
+    then(handleSuccess).catch(handleError);
 }
 
 
@@ -187,8 +187,8 @@ screenshotButton.onclick = function () {
     $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('card-img-top'));
     $('#viewImg').modal('show');
   });
-    $('#picture a').on('click', function (e) {
-      $(e.currentTarget).parent().parent().parent().remove();
+  $('#picture a').on('click', function (e) {
+    $(e.currentTarget).parent().parent().parent().remove();
   })
 
   /*
@@ -338,8 +338,8 @@ submitbtn.onclick = function () {
   }
   console.log(imageinfo);
 
-  if (nameinfo == "" || descriptioninfo == "" || useraddressinfo == "" || latinfo == "" || lnginfo == "" || imageinfo == []) {
-    return alert("variable empty");
+  if (nameinfo == "" || descriptioninfo == "" || useraddressinfo == "" || latinfo == "" || lnginfo == "" || imageinfo.length == 0) {
+    return alert(">>Require to fill in field with * and at least one take picture.");
   }
 
   console.log(blogcount);
@@ -397,36 +397,37 @@ submitbtn.onclick = function () {
   video.srcObject = "";
   document.getElementById("form").style.display = "none";
 */
+  alert('Your have post been submitted');
   location.reload();
 }
 
 //show form
 function showform() {
-  if(formshow == false){
-  document.getElementsByClassName('head')[0].style.display = 'none';
-  document.getElementById('blog_place').style.display = 'block';
-  document.getElementsByClassName('footer')[0].style.display = 'block';
-  document.getElementById("form").style.display = "block";
-  document.getElementById("detail").style.display = "none";
-  var d = document.createElement('button');
-  d.setAttribute('type','button');
-  d.setAttribute('class','btn btn-danger');
-  d.setAttribute('onclick','showform()');
-  d.innerHTML = 'Cancel';
-  postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
-  formshow = true;
-  }else{
-  document.getElementsByClassName('head')[0].style.display = 'none';
-  document.getElementById('blog_place').style.display = 'block';
-  document.getElementsByClassName('footer')[0].style.display = 'block';
-  document.getElementById("form").style.display = "none";
-  var d = document.createElement('button');
-  d.setAttribute('type','button');
-  d.setAttribute('class','btn btn-danger');
-  d.setAttribute('onclick','showform()');
-  d.innerHTML = 'POST';
-  postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
-  formshow = false;
+  if (formshow == false) {
+    document.getElementsByClassName('head')[0].style.display = 'none';
+    document.getElementById('blog_place').style.display = 'block';
+    document.getElementsByClassName('footer')[0].style.display = 'block';
+    document.getElementById("form").style.display = "block";
+    document.getElementById("detail").style.display = "none";
+    var d = document.createElement('button');
+    d.setAttribute('type', 'button');
+    d.setAttribute('class', 'btn btn-danger');
+    d.setAttribute('onclick', 'showform()');
+    d.innerHTML = 'Cancel';
+    postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
+    formshow = true;
+  } else {
+    document.getElementsByClassName('head')[0].style.display = 'none';
+    document.getElementById('blog_place').style.display = 'block';
+    document.getElementsByClassName('footer')[0].style.display = 'block';
+    document.getElementById("form").style.display = "none";
+    var d = document.createElement('button');
+    d.setAttribute('type', 'button');
+    d.setAttribute('class', 'btn btn-danger');
+    d.setAttribute('onclick', 'showform()');
+    d.innerHTML = 'POST';
+    postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
+    formshow = false;
   }
 }
 
