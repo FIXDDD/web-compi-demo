@@ -151,7 +151,13 @@ var formshow = false;
 // modal variable
 const sharebtn = document.getElementById('savebtn');
 
-//functions
+//functions**********************************************************
+
+function showpost(){
+  document.getElementsByClassName('head')[0].style.display = 'none';
+  document.getElementById('blog_place').style.display = 'block';
+  document.getElementsByClassName('footer')[0].style.display = 'block';
+}
 
 // for nav brand
 function reload_page() {
@@ -170,6 +176,7 @@ screenshotButton.onclick = function () {
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
   //img.src = canvas.toDataURL('image/webp');
+  document.getElementById('tiptag').style.display = 'block';
   var formimgtemplate = document.getElementById("formimg").innerHTML;
   var eleme = document.createElement('div');
   eleme.className = "col";
@@ -396,6 +403,9 @@ submitbtn.onclick = function () {
 //show form
 function showform() {
   if(formshow == false){
+  document.getElementsByClassName('head')[0].style.display = 'none';
+  document.getElementById('blog_place').style.display = 'block';
+  document.getElementsByClassName('footer')[0].style.display = 'block';
   document.getElementById("form").style.display = "block";
   document.getElementById("detail").style.display = "none";
   var d = document.createElement('button');
@@ -406,6 +416,9 @@ function showform() {
   postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
   formshow = true;
   }else{
+  document.getElementsByClassName('head')[0].style.display = 'none';
+  document.getElementById('blog_place').style.display = 'block';
+  document.getElementsByClassName('footer')[0].style.display = 'block';
   document.getElementById("form").style.display = "none";
   var d = document.createElement('button');
   d.setAttribute('type','button');
@@ -464,6 +477,7 @@ mailbtn.onclick = function () {
 // show view
 function showview(e) {
   window.scrollTo(0, 0);
+  document.getElementsByClassName('head')[0].style.display = 'none';
   var viewjob = localStorage.getItem(e.target.id);
   var viewjob1 = JSON.parse(viewjob)[parseInt(e.target.id)];
   var viewblogtemplate = document.getElementById('viewblog').innerHTML;
@@ -498,8 +512,11 @@ function showview(e) {
   }
 
   //change form btn text
+  /*
   if(formshow == true){
     document.getElementById("form").style.display = "none";
+    document.getElementById('blog_place').style.display = 'block';
+    document.getElementsByClassName('footer')[0].style.display = 'block';
     var d = document.createElement('button');
     d.setAttribute('type','button');
     d.setAttribute('class','btn btn-danger');
@@ -508,6 +525,7 @@ function showview(e) {
     postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
     formshow = false;
     }
+    */
 
   //show divider
   document.getElementById('divider').style.display = 'block';
