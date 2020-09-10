@@ -2,7 +2,6 @@ window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 }
 $(document).ready(function () {
-  //localStorage.clear();
 
   //add default blog
   var defaultblog = [{
@@ -31,21 +30,7 @@ $(document).ready(function () {
       localStorage.setItem(u, JSON.stringify(blogobj));
     }
   }
-  /*
-  for (var u = 0; u < defaultblog.length; u++) {
-    var templateblog = document.getElementById('card').innerHTML;
-    var creatblog = document.createElement('div');
-    creatblog.setAttribute('class', 'col mb-4');
-    creatblog.innerHTML = templateblog;
-    blog.appendChild(creatblog);
-    blog.lastChild.getElementsByTagName('img')[0].src = defaultblog[u].image[0];
-    blog.lastChild.getElementsByClassName('card-title')[0].innerText = defaultblog[u].name;
-    blog.lastChild.getElementsByClassName('card-text')[0].innerText = defaultblog[u].description;
-    blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = defaultblog[u].location;
-
-
-  }
-  */
+  
   for (var i = localStorage.length - 1; i >= 0; i--) {
     var index = i.toString();
     var job = localStorage.getItem(index);
@@ -63,14 +48,6 @@ $(document).ready(function () {
     blog.lastChild.getElementsByClassName('card-subtitle')[0].innerText = job1.useraddress;
     blog.lastChild.getElementsByTagName('a')[0].id = i.toString();
 
-    /* Old way to append blog div
-    newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
-    console.log(job1.image);
-    for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-fluid\"><p></p>"
-    }
-    blog.appendChild(newblog);
-    */
   }
 
   var allblog = document.getElementById('show_blog').getElementsByTagName('a');
@@ -79,28 +56,6 @@ $(document).ready(function () {
       showview(el);
     })
   }
-
-  /* old bootstrap
-  $('img').each(function (i, e) {
-    $(e).wrap('<div class="img-wrapper"></div>')
-  })
-  */
-
-  /* Old way to apply onlclick to all image
-  var allimg = document.getElementsByTagName('img');
-  for (var a = 0; a < allimg.length; a++) {
-    allimg[a].addEventListener('click', function (el) {
-      appendimg(el);
-    })
-  }
-  */
-
-  /* Method to enlarge image
-  $('img').on('click', function (e) {
-    $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
-    $('#viewImg').modal('show');
-  })
-*/
 })
 
 // map variable
@@ -134,8 +89,6 @@ var imgcount = 0;
 const captureVideoButton =
   document.querySelector('#screenshot #capture-button');
 const screenshotButton = document.querySelector('#screenshot-button');
-//const img = document.querySelector('#screenshot img');
-//var img = document.querySelector('#screenshot img');
 const video = document.querySelector('#screenshot video');
 const idvideo = document.getElementById('vidi');
 const canvas = document.createElement('canvas');
@@ -175,7 +128,6 @@ screenshotButton.onclick = function () {
   canvas.height = video.videoHeight;
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
-  //img.src = canvas.toDataURL('image/webp');
   document.getElementById('tiptag').style.display = 'block';
   var formimgtemplate = document.getElementById("formimg").innerHTML;
   var eleme = document.createElement('div');
@@ -190,17 +142,6 @@ screenshotButton.onclick = function () {
   $('#picture a').on('click', function (e) {
     $(e.currentTarget).parent().parent().parent().remove();
   })
-
-  /*
-  var eleme = document.createElement('img');
-  eleme.src = canvas.toDataURL('image/png');
-  eleme.className = "img-fluid";
-  document.getElementById("picture").appendChild(eleme);
-  $('#picture img').on('click', function (e) {
-    $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('img-fluid').removeClass('img-thumbnail'))
-    $('#viewImg').modal('show');
-  })*/
-  //try append image
 }
 
 
@@ -305,12 +246,6 @@ function geoFindMe() {
         window.alert("Geocoder failed due to: " + status);
       }
     });
-    //Method 2: for create Map static image
-    /*
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false&key=AIzaSyADrKlMX6jdT_T7sLhb77h2r_QxMCcoyMc";
-    output.appendChild(img);
-*/
   }
   function error() {
     output.innerHTML = "Unable to retrieve your location";
@@ -353,50 +288,6 @@ submitbtn.onclick = function () {
   console.log(obj);
   localStorage.setItem(blogcountstr, JSON.stringify(obj));
 
-  /* Duplicate code to fill show_blog
-  // clear shown blog
-  while (blog.firstChild) {
-    blog.removeChild(blog.firstChild);
-  }
-
-  //show all blog in localstorage
-  for (var i = 0; i < localStorage.length; i++) {
-    var index = i.toString();
-    var job = localStorage.getItem(index);
-    console.log(job);
-    var job1 = JSON.parse(job)[index];
-    console.log(job1);
-    var newblog = document.createElement('div');
-    newblog.innerHTML = "<p>" + job1.name + "</p>" + "<p>" + job1.description + "</p>" + "<p>" + job1.location + "</p>" + "<p>" + job1.useraddress + "</p>";
-    console.log(job1.image);
-    for (var k = 0; k < job1.image.length; k++) {
-      newblog.innerHTML = newblog.innerHTML + "<img src=\"" + job1.image[k] + "\" class=\"img-fluid\"><p></p>"
-    }
-    blog.appendChild(newblog);
-  }
-  */
-
-  //reset number of blog in localstorage
-  /*
-  var blogcount = localStorage.length;
-  */
-  // init form
-  /*
-  document.getElementById('bname').value = "";
-  document.getElementById('bdescription').value = "";
-  document.getElementById('map').style.display = "none";
-  while (document.getElementById('picture').firstChild) {
-    document.getElementById('picture').removeChild(document.getElementById('picture').firstChild)
-  }
-  while (document.getElementById('myaddr').firstChild) {
-    document.getElementById('myaddr').removeChild(document.getElementById('myaddr').firstChild)
-  }
-
-  video.style.display = "none";
-  screenshotButton.disabled = true;
-  video.srcObject = "";
-  document.getElementById("form").style.display = "none";
-*/
   alert('Your have post been submitted');
   location.reload();
 }
@@ -433,20 +324,6 @@ function showform() {
 
 //for share image
 sharebtn.onclick = () => {
-  /*
-  var imgsrce = document.getElementById('imgViewer').getElementsByTagName('img')[0].src;
-  if (navigator.share && navigator.canShare({ files: [imgsrce] })) {
-    navigator.share({
-      files: [imgsrce],
-      title: 'Amazing business',
-      text: 'Check out this amazing business',
-    })
-      .then(() => console.log('Share was successful.'))
-      .catch((error) => console.log('Sharing failed', error));
-  } else {
-    console.log(`Your system doesn't support sharing files.`);
-  }
-  */
   var imgsrce = document.getElementById('imgViewer').getElementsByTagName('img')[0].src;
   var link = document.createElement('a');
   link.href = imgsrce;
@@ -512,22 +389,6 @@ function showview(e) {
     viewpicture.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[q];
   }
 
-  //change form btn text
-  /*
-  if(formshow == true){
-    document.getElementById("form").style.display = "none";
-    document.getElementById('blog_place').style.display = 'block';
-    document.getElementsByClassName('footer')[0].style.display = 'block';
-    var d = document.createElement('button');
-    d.setAttribute('type','button');
-    d.setAttribute('class','btn btn-danger');
-    d.setAttribute('onclick','showform()');
-    d.innerHTML = 'POST';
-    postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
-    formshow = false;
-    }
-    */
-
   //show divider
   document.getElementById('divider').style.display = 'block';
 
@@ -548,24 +409,6 @@ function showview(e) {
     viewplace.getElementsByTagName('a')[1].style.display = 'none';
   }
 }
-
-
-
-
-/*
-function appendimg(el) {
-  var ele = el.target;
-  document.getElementById('imgViewer').innerHTML = "";
-  var addingimg = document.createElement('img');
-  addingimg.setAttribute("src", ele.src);
-  document.getElementById('imgViewer').appendChild(addingimg);
-  document.getElementById('viewImg').style.display = "block";
-}
-
-document.getElementById("close-imgshow").onclick = () => {
-  document.getElementById('viewImg').style.display = "none";
-}
-*/
 
 // modal init
 $('#myModal').on('shown.bs.modal', function () {
