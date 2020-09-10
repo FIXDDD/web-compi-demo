@@ -177,8 +177,10 @@ screenshotButton.onclick = function () {
   $('#picture img').on('click', function (e) {
     $('#imgViewer').html('').append($(e.currentTarget).clone().removeClass('card-img-top'));
     $('#viewImg').modal('show');
+  });
+    $('#picture a').on('click', function (e) {
+      $(e.currentTarget).parent().parent().parent().remove();
   })
-
 
   /*
   var eleme = document.createElement('img');
@@ -448,10 +450,12 @@ function showview(e) {
   var viewplace = document.getElementById('detail');
   var createview = document.createElement('div');
 
+  //remove previous detail view
   if (viewplace.firstChild) {
     viewplace.firstChild.remove();
   }
 
+  //append new detail view
   createview.setAttribute('class', 'card');
   createview.innerHTML = viewblogtemplate;
   viewplace.appendChild(createview);
@@ -462,15 +466,18 @@ function showview(e) {
   viewplace.lastChild.getElementsByClassName('card-text')[0].innerText = viewjob1.description;
   viewplace.lastChild.getElementsByClassName('card-subtitle')[0].innerText = viewjob1.useraddress;
 
+  //apend image
   for (var q = 0; q < viewjob1.image.length; q++) {
     var viewpicture = document.getElementById('viewpicture');
-    var viewpicturetemplate = document.getElementById("formimg").innerHTML;
+    var viewpicturetemplate = document.getElementById("viewimg").innerHTML;
     var piceleme = document.createElement('div');
-    piceleme.className = "col";
+    piceleme.className = "setsize";
     piceleme.innerHTML = viewpicturetemplate;
     viewpicture.appendChild(piceleme);
     viewpicture.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[q];
   }
+
+  document.getElementById('divider').style.display = 'block';
 
   $('#viewpicture img').on('click', function (e) {
     $('#viewpic').attr('src', e.target.src);
@@ -478,7 +485,7 @@ function showview(e) {
 
   //show all image
   viewplace.getElementsByTagName('a')[0].onclick = function () {
-    document.getElementById('viewpicture').style.display = "block";
+    document.getElementById('viewpicture').style.display = "flex";
   }
 }
 

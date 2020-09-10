@@ -43,13 +43,22 @@
     position:absolute;
 }
 
-#viewpicture{
-	display: none;
-}
 
 /*for blog detail*/
+
+#viewpicture{
+	display: none;
+	flex-wrap: wrap;
+	padding-bottom: 2em;
+}
+
 #viewpicture img{
 	cursor: pointer;
+}
+
+.setsize{
+	flex: 0 0 50%;
+    max-width: 50%;
 }
 
 /*for video*/
@@ -58,6 +67,10 @@
 }
 
 video{
+	display: none;
+}
+
+#divider{
 	display: none;
 }
 
@@ -77,12 +90,6 @@ video{
 
 .embers{
 	background-color: #b82601;
-}
-
-.img-wrapper::after {
-    font-size: 12px;
-    content: 'Click Image To View Full Size';
-    display: block;
 }
 
 /* for ios show scrow bar*/

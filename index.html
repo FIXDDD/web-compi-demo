@@ -19,7 +19,7 @@
 	<head>
 		<nav class="navbar navbar-light black">
 			<!-- Navbar content -->
-			<a href="#" class="navbar-brand mx-auto text-white" onclick="reload_page()">Small Business</a>
+			<a href="#" class="navbar-brand text-white" onclick="reload_page()">Macau business share blog</a>
 			<form class="form-inline">
 				<button type="button" class="btn btn-danger" onclick="showform()">POST</button>
 			</form>
@@ -104,10 +104,19 @@
 			</form>
 		</section>
 
-		<section class="container py-3" id="detail"></section>
+		<section class="container" id="detail"></section>
+
+		<div id="divider" class="container">
+			<h4 class="text-center">More Business Post</h4>
+			<hr>
+		</div>
+
+
 		<section id="blog_place" class="container">
 			<div id="show_blog" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"></div>
 		</section>
+
+
 
 
 
@@ -129,7 +138,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="savebtn">save</button>
+						<button type="button" class="btn btn-primary" id="savebtn">Save Picture</button>
 					</div>
 				</div>
 			</div>
@@ -141,9 +150,9 @@
 		<div class="card">
 			  <img src="" class="card-img-top" alt="...">
 			  <div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-				<p class="card-text"></p>
+				<h5 class="card-title ">Card title</h5>
+				<h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6>
+				<p class="card-text text-truncate"></p>
 			  </div>
 			  <div class="card-body text-right">
 				<a href='#' id='delete' class="card-link">View detail</a>
@@ -156,34 +165,38 @@
 	<script id="formimg" type="text/html">
 		<div class="card">
 			<img src="" class="card-img-top" alt="...">
-		</div>
-		<div class="card-body">
+			<div class="card-body">
 			<a href='#' class="btn btn-danger btn-lg btn-block">Delete</a>
+		</div>
 		</div>
 	</script>
 
 	<!--append view blog-->
 	<script id="viewblog" type="text/html">
-			<div class="row ">
-			  <div class="col-md-4">
-				  <img id="viewpic" src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
-				</div>
-				<div class="col-md-8 px-3">
-				  <div class="card-block px-3">
-					<h1 class="card-title">Lorem ipsum dolor sit amet</h1>
+		<div class="row ">
+			<div class="col-md-12">
+				<img id="viewpic" src="" class="w-100">
+			</div>
+			<div class="col-md-12 px-3">
+				<div class="card-block px-3">
+					<h1 class="card-title"></h1>
 					<p class="card-subtitle text-muted"></p>
 					<p class="card-text"></p>
-					<a id="moreimage" href="#">More images...</a>
-					<div class='container'>
-						<div id="viewpicture"
-							class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-						</div>
+					<a id="moreimage" class="btn btn-primary">More images...</a>
+					<div id="viewpicture"
+						class="flex-container">
 					</div>
-				  </div>
 				</div>
-	  
-			  </div>
 			</div>
+			</div>
+		</div>
+	</script>
+
+	<!--append view picture-->
+	<script id="viewimg" type="text/html">
+		<div class="card">
+			<img src="" class="card-img-top" alt="...">
+		</div>
 	</script>
 
 
