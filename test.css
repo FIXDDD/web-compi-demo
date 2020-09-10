@@ -56,10 +56,25 @@
 	cursor: pointer;
 }
 
+#viewpicture .setsize .card{
+	cursor: pointer;
+	padding: 0;
+}
+
 .setsize{
 	flex: 0 0 50%;
     max-width: 50%;
 }
+
+#hideimage{
+	display: none;
+}
+
+#detail .card{
+	padding: 1em;
+}
+
+
 
 /*for video*/
 #vidi{
@@ -72,6 +87,7 @@ video{
 
 #divider{
 	display: none;
+	margin-top:3em;
 }
 
 

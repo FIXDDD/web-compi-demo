@@ -20,7 +20,7 @@
 		<nav class="navbar navbar-light black">
 			<!-- Navbar content -->
 			<a href="#" class="navbar-brand text-white" onclick="reload_page()">Macau business share blog</a>
-			<form class="form-inline">
+			<form id="postbtn" class="form-inline">
 				<button type="button" class="btn btn-danger" onclick="showform()">POST</button>
 			</form>
 		</nav>
@@ -182,7 +182,8 @@
 					<h1 class="card-title"></h1>
 					<p class="card-subtitle text-muted"></p>
 					<p class="card-text"></p>
-					<a id="moreimage" class="btn btn-primary">More images...</a>
+					<a id="moreimage" class="btn btn-primary btn-lg btn-block">More images...</a>
+					<a id="hideimage" class="btn btn-primary btn-lg btn-block">Hide images</a>
 					<div id="viewpicture"
 						class="flex-container">
 					</div>

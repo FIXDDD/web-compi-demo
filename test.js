@@ -145,6 +145,8 @@ const submitbtn = document.querySelector('#form #submitbtn');
 const mailbtn = document.querySelector('#form #mailbtn');
 const showpicture = document.getElementById("picture");
 const blog = document.getElementById('show_blog');
+const postbtn = document.getElementById('postbtn');
+var formshow = false;
 
 // modal variable
 const sharebtn = document.getElementById('savebtn');
@@ -393,8 +395,26 @@ submitbtn.onclick = function () {
 
 //show form
 function showform() {
+  if(formshow == false){
   document.getElementById("form").style.display = "block";
   document.getElementById("detail").style.display = "none";
+  var d = document.createElement('button');
+  d.setAttribute('type','button');
+  d.setAttribute('class','btn btn-danger');
+  d.setAttribute('onclick','showform()');
+  d.innerHTML = 'Cancel';
+  postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
+  formshow = true;
+  }else{
+  document.getElementById("form").style.display = "none";
+  var d = document.createElement('button');
+  d.setAttribute('type','button');
+  d.setAttribute('class','btn btn-danger');
+  d.setAttribute('onclick','showform()');
+  d.innerHTML = 'POST';
+  postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
+  formshow = false;
+  }
 }
 
 //for share image
@@ -477,6 +497,19 @@ function showview(e) {
     viewpicture.lastChild.getElementsByTagName('img')[0].src = viewjob1.image[q];
   }
 
+  //change form btn text
+  if(formshow == true){
+    document.getElementById("form").style.display = "none";
+    var d = document.createElement('button');
+    d.setAttribute('type','button');
+    d.setAttribute('class','btn btn-danger');
+    d.setAttribute('onclick','showform()');
+    d.innerHTML = 'POST';
+    postbtn.getElementsByTagName('button')[0].parentNode.replaceChild(d, postbtn.getElementsByTagName('button')[0]);
+    formshow = false;
+    }
+
+  //show divider
   document.getElementById('divider').style.display = 'block';
 
   $('#viewpicture img').on('click', function (e) {
@@ -486,6 +519,14 @@ function showview(e) {
   //show all image
   viewplace.getElementsByTagName('a')[0].onclick = function () {
     document.getElementById('viewpicture').style.display = "flex";
+    viewplace.getElementsByTagName('a')[0].style.display = 'none';
+    viewplace.getElementsByTagName('a')[1].style.display = 'block';
+  }
+
+  viewplace.getElementsByTagName('a')[1].onclick = function () {
+    document.getElementById('viewpicture').style.display = "none";
+    viewplace.getElementsByTagName('a')[0].style.display = 'block';
+    viewplace.getElementsByTagName('a')[1].style.display = 'none';
   }
 }
 
