@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   }
   */
-  for (var i = 0; i < localStorage.length; i++) {
+  for (var i = localStorage.length-1; i >= 0; i--) {
     var index = i.toString();
     var job = localStorage.getItem(index);
     console.log(job);
