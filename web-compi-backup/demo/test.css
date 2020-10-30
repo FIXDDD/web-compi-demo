@@ -1,0 +1,180 @@
+/*header*/
+.head {
+	height: 100vh;
+	min-height: 500px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background: linear-gradient(-45deg,#ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	color: white;
+  }
+
+  @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*for form*/
+#form{
+	margin-bottom: 2em;
+	padding: 2em;
+}
+
+#form form {
+	border: 1px black solid;
+	border-radius: 10px;
+	padding: 2em;
+	background-color: #fff;
+}
+
+span{
+	color:red;
+}
+
+#screenshot-button {
+	display: none;
+}
+
+#picture img{
+	cursor: pointer;
+}
+
+#submitbtn{
+	margin-right: 0.5em;
+}
+
+#tiptag{
+	display: none;
+}
+
+/*for map*/
+#lat, #lng,#address{
+	display: none;
+}
+
+#map{
+	overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+	height:0;
+	display: none;
+}
+
+#map iframe{
+	left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+/*for blog place*/
+#blog_place{
+	display: none;
+}
+
+
+/*for footer*/
+footer{
+	display: none;
+}
+
+.footer{
+	display: none;
+}
+
+/*for blog detail*/
+
+#viewpicture{
+	display: none;
+	flex-wrap: wrap;
+	padding-bottom: 2em;
+}
+
+#viewpicture img{
+	cursor: pointer;
+}
+
+#viewpicture .setsize .card{
+	cursor: pointer;
+	padding: 0;
+}
+
+.setsize{
+	flex: 0 0 50%;
+    max-width: 50%;
+}
+
+#hideimage{
+	display: none;
+}
+
+#detail .card{
+	padding: 1em;
+}
+
+
+
+/*for video*/
+#vidi{
+	display:none;
+}
+
+video{
+	display: none;
+}
+
+#divider{
+	display: none;
+	margin-top:3em;
+}
+
+
+/*background color*/
+.black{
+	background-color:#000;
+}
+
+.INK{
+	background-color: #062f4f;
+}
+
+.POSY{
+	background-color: #813772;
+}
+
+.embers{
+	background-color: #b82601;
+}
+
+.stark{
+	background-color: #E7DFDD;
+}
+
+/* for ios show scrow bar*/
+#imgViewer::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 10px;
+}
+#imgViewer::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.footer {
+	width: 100%;
+	background-color: #E7DFDD;
+	color: white;
+	text-align: center;
+ }
+

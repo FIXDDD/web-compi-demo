@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- My Css -->
+	<link rel="stylesheet" type="text/css" href="test.css">
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<title>Macau Small Busineess blog</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-light black">
+		<!-- Navbar content -->
+		<a href="#" class="navbar-brand text-white" onclick="reload_page()">Macau SMEs blog</a>
+		<form id="postbtn" class="form-inline">
+			<button type="button" class="btn btn-danger" onclick="showform()">ADD POST</button>
+		</form>
+	</nav>
+	<header class="head">
+		<div class="container h-100">
+			<div class="row h-100 align-items-center">
+				<div class="col-12 text-center">
+					<h1>Macau Small and medium-sized enterprises blog</h1>
+					<p>A place where you can share about the SMEs you found in Macau right on the spot.</p>
+					<br>
+					<button class="btn btn-primary btn-lg" onclick="showpost()">View blog</button>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section id="form" class="INK" style="display: none;">
+			<h1 class="text-white text-center">Create Post</h1>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="bname">Business Name:<span>*</span></label>
+						<input id="bname" class="form-control" type="text" name="bname"><br>
+					</div>
+					<div id="myaddr" class="form-group col-md-11">
+						<!-- https://codepen.io/makzan/pen/EbLopd -->
+						<!-- get location-->
+						<input class="form-control" type="text" placeholder="Business Location" readonly>
+					</div>
+					<div class="form-group col-md-1 text-center">
+						<button type="button" class="btn btn-secondary" onclick="findAddress()">Get
+							Location<span>*</span></button>
+					</div>
+					<div class="col-md-4">
+					</div>
+					<div id="out" class="form-group col-md-4">
+						<div id="map"></div>
+					</div>
+					<div class="col-md-4">
+					</div>
+					<div class='form-group col-md-12 '>
+						<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="geoFindMe()">Show
+							my
+							location</button>
+					</div>
+					<!--get picture-->
+					<div class="col-md-12 ">
+						<div id="screenshot">
+							<div class="row">
+								<div class="col-md-4">
+								</div>
+								<div class="col-md-4">
+									<div class="embed-responsive embed-responsive-4by3" id="vidi">
+										<video autoplay></video>
+									</div>
+								</div>
+								<div class="col-md-4">
+								</div>
+							</div>
+							<p>
+								<button type="button" id="screenshot-button" class="btn btn-secondary btn-lg btn-block">
+									<i class="material-icons">camera_alt</i><span>*</span></button>
+							</p>
+							<div id="set_img_size" class='container'>
+								<small id="tiptag">Tab on image to enlarge image or save image</small>
+								<div id="picture"
+									class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+
+								</div>
+							</div>
+							<canvas style="display:none;"></canvas>
+							<p>
+								<button type="button" id="capture-button"
+									class="btn btn-secondary btn-lg btn-block">Take Picture<span>*</span></button>
+							</p>
+						</div>
+					</div>
+					<div class="form-group col-md-12">
+						<lable for="bdescription">Business Description:<span>*</span></lable>
+						<input id="bdescription" class="form-control" type="text" name="bdescription">
+					</div>
+					<div class="form-group col-md-4 text-center">
+						<button type="button" id="mailbtn" class="btn btn-primary btn-lg btn-block">Send
+							mail</button>
+					</div>
+					<div class="col-md-4">
+					</div>
+					<div class="col-md-4 text-center">
+						<button type="button" id='submitbtn' class="btn btn-primary btn-lg btn-block">Post
+							Blog</button>
+					</div>
+					<div class="col-md-12 text-right">
+						<small>>>Require to fill in field with <span>*</span> and at least one take picture.</small>
+						<br>
+						<small>>>Require user to save the image and add picture saved to mail manually.</small>
+					</div>
+				</div>
+			</form>
+		</section>
+
+		<section class="container" id="detail"></section>
+
+		<div id="divider" class="container">
+			<h4 class="text-center">More Business Post</h4>
+			<hr>
+		</div>
+
+		
+
+		<section id="blog_place" class="container">
+			<div class="container">
+				<hr>
+			</div>
+			<div id="show_blog" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+			</div>
+		</section>
+
+
+
+
+
+
+		<!--Hide modle to show full image and share-->
+		<div class="modal in" id="viewImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">View Image</h5>
+						<button id="close-imgshow" type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+
+					</div>
+					<div class="modal-body">
+						<div id="imgViewer" style="overflow-x: scroll;">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="savebtn">Save Picture</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="footer">
+		<h1>No More Post</h1>
+	</footer>
+
+	<!--append card-->
+	<script id="card" type="text/html">
+		<div class="card">
+			  <img src="" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title ">Card title</h5>
+				<h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6>
+				<p class="card-text text-truncate"></p>
+			  </div>
+			  <div class="card-body text-right">
+				<a href='#' id='delete' class="card-link">View detail</a>
+			  </div>
+			</div>
+		</div>
+	</script>
+
+	<!--append form picture-->
+	<script id="formimg" type="text/html">
+		<div class="card">
+			<img src="" class="card-img-top" alt="...">
+			<div class="card-body">
+			<a href='#' class="btn btn-danger btn-lg btn-block">Delete</a>
+		</div>
+		</div>
+	</script>
+
+	<!--append view blog-->
+	<script id="viewblog" type="text/html">
+		<div class="row ">
+			<div class="col-md-12">
+				<img id="viewpic" src="" class="w-100">
+			</div>
+			<div class="col-md-12 px-3">
+				<div class="card-block px-3">
+					<h1 class="card-title"></h1>
+					<p class="card-subtitle text-muted"></p>
+					<p class="card-text"></p>
+					<a id="moreimage" class="btn btn-primary btn-lg btn-block">More images...</a>
+					<a id="hideimage" class="btn btn-primary btn-lg btn-block">Hide images</a>
+					<div id="viewpicture"
+						class="flex-container">
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</script>
+
+	<!--append view picture-->
+	<script id="viewimg" type="text/html">
+		<div class="card">
+			<img src="" class="card-img-top" alt="...">
+		</div>
+	</script>
+
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+	<!--Google Map script-->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADrKlMX6jdT_T7sLhb77h2r_QxMCcoyMc&callback=initMap&libraries=&v=weekly"
+		defer></script>
+	<!--My js script-->
+	<script src="test.js"></script>
+</body>
+
+</html>
